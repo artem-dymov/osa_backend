@@ -1,20 +1,45 @@
-import os
-print(os.listdir())
 from typing import Union
-
-from ...osa_utils.db_api import db_commands
-
+import asyncio
+from osa_utils.db_api.database import create_db, drop_connection
+from osa_utils.db_api import db_commands
+import uvicorn
 from fastapi import FastAPI
+from urllib.parse import unquote
+
+from osa_utils.db_api.models import User, Teacher, Teacher_classes, Vote, Vote_classes, Group, Group_classes, Question
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.on_event('startup')
+async def startup_event():
+    await create_db()
 
 
-@app.get("/all_teachers/{faculty}")
-async def read_item(faculty: str):
-    teachers = await db_commands.get_all_teachers(faculty=faculty)
-    return {"teachers": teachers}
+@app.get('/all_teachers/{faculty}')
+async def get_all_teachers(faculty: str):
+    faculty = unquote(faculty)
+    teachers: list[Teacher] = await db_commands.get_all_teachers(faculty)
+
+    t_list = [{'faculty': faculty}]
+    for teacher in teachers:
+        t_list.append({'id': teacher.id, 'full_name': teacher.full_name, 'type': teacher.type})
+    return {'teachers': t_list}
+
+
+@app.get('/all_groups/{faculty}')
+async def get_all_groups(faculty: str):
+    faculty = unquote(faculty)
+    groups: list[Group] = await db_commands.get_all_groups(faculty)
+
+    g_list = [{'faculty': faculty}]
+    for group in groups:
+        g_list.append({'id': group.id, 'name': group.name, 'teachers': group.teachers})
+    return {'groups': g_list}
+
+
+uvicorn.run('app.main:app', port=8000, log_level='debug')
+
+
+
+
