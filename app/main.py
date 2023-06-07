@@ -1,12 +1,11 @@
-from typing import Union
-import asyncio
 from osa_utils.db_api.database import create_db, drop_connection
 from osa_utils.db_api import db_commands
 import uvicorn
 from fastapi import FastAPI
 from urllib.parse import unquote
 
-from osa_utils.db_api.models import User, Teacher, Teacher_classes, Vote, Vote_classes, Group, Group_classes, Question
+from osa_utils.db_api.models import User, Teacher, Teacher_classes, Vote, Vote_classes, Group,\
+    Group_classes, Question
 
 app = FastAPI()
 
