@@ -1,7 +1,7 @@
 import json
 
 faculties =     ('fbme', 'ipp', 'fl', 'fel', 'its', 'ipt', 'imi', 'fbt', 'fsl', 'fam', 'tef', 'imz')
-faculties_ukr = ('ФБМІ', 'ВПІ', 'ФЛ', 'ФЕЛ', 'ІТС', 'ФТІ', 'ММІ', 'ФБТ', 'ФСП', 'ФПМ', 'ТЕФ', 'ІМЗ')
+faculties_ukr = ('ФБМІ', 'ВПІ', 'ФЛ', 'ФЕЛ', 'ІТС', 'ФТІ', 'ММІ', 'ФБТ', 'ФСП', 'ФПМ', 'ІАТЕ', 'ІМЗ')
 
 global BOT_TOKEN
 global DATABASE_URL
