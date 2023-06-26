@@ -9,6 +9,7 @@ global HOST
 def _get_data():
     with open('settings.json', 'r') as file:
         global DATABASE_URL
+        global HOST
 
         py_data = json.load(file)
         DATABASE_URL = py_data['DATABASE_URL']
