@@ -50,7 +50,7 @@ async def get_group(faculty: str, group_name: str):
     else:
         raise HTTPException(status_code=404, detail="Group not found")
 
-uvicorn.run('app.main:app', port=8000, log_level='debug')
+uvicorn.run('app.main:app', port=8000, log_level='debug', host=)
 
 
 
