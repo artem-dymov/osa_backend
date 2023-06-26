@@ -2,6 +2,7 @@ settings.json
 /venv/
 /.idea/
 /osa_utils/
+/csv_tables/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

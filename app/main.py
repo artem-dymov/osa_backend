@@ -1,7 +1,7 @@
 from osa_utils.db_api.database import create_db, drop_connection
 from osa_utils.db_api import db_commands
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from urllib.parse import unquote
 
 from osa_utils.db_api.models import User, Teacher, Teacher_classes, Vote, Vote_classes, Group,\
@@ -36,6 +36,19 @@ async def get_all_groups(faculty: str):
         g_list.append({'id': group.id, 'name': group.name, 'teachers': group.teachers})
     return {'groups': g_list}
 
+
+@app.get('/group/{faculty}/{group_name}')
+async def get_group(faculty: str, group_name: str):
+    group_name = unquote(group_name)
+    # print(group_name)
+
+    group = await db_commands.get_group_by_name(faculty, group_name)
+
+    if group:
+        g_list = {'faculty': faculty, 'id': group.id, 'name': group.name, 'teachers': group.teachers}
+        return g_list
+    else:
+        raise HTTPException(status_code=404, detail="Group not found")
 
 uvicorn.run('app.main:app', port=8000, log_level='debug')
 
