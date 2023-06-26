@@ -6,6 +6,7 @@ from urllib.parse import unquote
 
 from osa_utils.db_api.models import User, Teacher, Teacher_classes, Vote, Vote_classes, Group,\
     Group_classes, Question
+from config import HOST
 
 app = FastAPI()
 
@@ -50,7 +51,7 @@ async def get_group(faculty: str, group_name: str):
     else:
         raise HTTPException(status_code=404, detail="Group not found")
 
-uvicorn.run('app.main:app', port=8000, log_level='debug', host=)
+uvicorn.run('app.main:app', port=8000, log_level='debug', host=HOST)
 
 
 
