@@ -1,7 +1,7 @@
 import json
 
-faculties =     ('fbme', 'ipp', 'fl', 'fel', 'its', 'ipt', 'imi', 'fbt', 'fsl', 'fam', 'tef', 'imz')
-faculties_ukr = ('ФБМІ', 'ВПІ', 'ФЛ', 'ФЕЛ', 'ІТС', 'ФТІ', 'ММІ', 'ФБТ', 'ФСП', 'ФПМ', 'ІАТЕ', 'ІМЗ')
+faculties =     ('fbme', 'tef')
+faculties_ukr = ('ФБМІ', 'ІАТЕ')
 
 global DATABASE_URL
 global HOST
